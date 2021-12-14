@@ -1,13 +1,20 @@
-# bot.py
-import os
 
+#main.py
 import discord
-from dotenv import load_dotenv
+from discord.ext import commands
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = "TOKEN"
+prefix = "r!"
 
-client = discord.Client()
+client = commands.Bot(command_prefix=prefix)
+
+@client.command()
+async def welcome_msg_send(ctx):
+    await ctx.send("Welcome to server")
+
+@client.command()
+async def hello(ctx):
+    await ctx.send("Hello")
 
 @client.event
 async def on_ready():
