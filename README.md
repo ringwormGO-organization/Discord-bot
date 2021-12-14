@@ -1,6 +1,9 @@
 # Discord-bot
 Discord bot for ringwormGO written in Python
 
+# Invite bot in own server
+https://discord.com/api/oauth2/authorize?client_id=899611372697030686&permissions=8&scope=bot
+
 # How to use?
 ### Open the dir in vs code.
 ### Open an new terminal in the folder (vs code or linux/windows terminal)
