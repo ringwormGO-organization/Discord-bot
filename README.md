@@ -13,7 +13,7 @@ python3 -v
 ```bash
 pip3 install discord.py
 ```
-### After this, make a bot on discord and add it to your server, there are a lot of tutorials on the internet on how to do this. Copy the bot token and replace "DISCORD_TOKEN" with the token
+### After this, make a bot on discord and add it to your server, there are a lot of tutorials on the internet on how to do this. Copy the bot token and replace "TOKEN" with the token
 ### Now, go cd into the bot dir and run
 ```bash
 python3 bot.py
