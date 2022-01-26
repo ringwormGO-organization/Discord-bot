@@ -5,7 +5,7 @@ from discord.ext import commands
 
 import sys
 
-TOKEN = "ODk5NjExMzcyNjk3MDMwNjg2.YW1SYQ.68iTCU00SzYZCFT2fekPQ2ZE2zw"
+TOKEN = "TOKEN"
 prefix = "r!"
 
 client = commands.Bot(command_prefix=prefix)
