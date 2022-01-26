@@ -26,5 +26,9 @@ python3 bot.py
 ### Now the bot should be online!!
 
 # Bot in action (pictures)
+
+![Screenshot 2022-01-26 194204](https://user-images.githubusercontent.com/83548580/151232550-749d43f9-b450-4acb-962c-2e3dd7e8ea23.jpg)
+
+------------------------------------------
 ![107](https://user-images.githubusercontent.com/83548580/147858174-cb7c4844-54c9-4891-ae21-14b4c2e51e36.jpg)
 ![110](https://user-images.githubusercontent.com/83548580/147858270-15c3f41d-0dc1-48fd-a9e6-22dd1f0732be.jpg)
