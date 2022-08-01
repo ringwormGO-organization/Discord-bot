@@ -29,7 +29,7 @@ async def on_started(event):
 @bot.command
 @lightbulb.command('hello', 'Says hello!')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def ping(ctx):
+async def hello(ctx):
     await ctx.respond(f'Hello!')
     helper.log("Hello command sent", USE_COLORS, "green")
 
