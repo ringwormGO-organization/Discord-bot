@@ -1,76 +1,92 @@
-#bot.py
+import hikari
+import lightbulb
 
-import discord
-from discord.ext import commands
-
+import os
 import sys
 
-TOKEN = "TOKEN"
-prefix = "r!"
+import helper
 
-client = commands.Bot(command_prefix=prefix)
+USE_REPL = False
+USE_COLORS = True
+bot = None
 
-@client.command()
-async def welcome_msg_send(ctx):
-    try:
-        await ctx.send("Welcome to server")
-        print("welcome_msg_send command sended")
-    except Exception as error:
-        await ctx.send(error)
-        print(f"{error}")
+if USE_REPL == False:
+    bot = lightbulb.BotApp(
+        token="ODk5NjExMzcyNjk3MDMwNjg2.YW1SYQ.vFj9bZnkjjs2HSJvo8HNf4V1m50",
+        default_enabled_guilds=(873967277014409287)
+    )
 
-@client.command()
-async def hello(ctx):
-    try:
-        await ctx.send("Hello")
-        print("hello command sended")
-    except Exception as error:
-        await ctx.send(error)
-        print(f"{error}")
+else:
+    bot = lightbulb.BotApp(
+        token=os.environ['TOKEN'],
+        default_enabled_guilds=(os.environ['SERVER_ID'])
+    )
 
-@client.command()
-@commands.has_permissions(kick_members=True)
-async def kick(ctx, member: discord.Member, reason=None):
-    if reason == None:
-        await ctx.send(f"Woah {ctx.author.mention}, make sure you provide a reason!")
-        print(f"Woah {ctx.author.mention}, make sure you provide a reason!")
-    else:
-        try:
-            messageok = f"You have been kicked from `{ctx.guild.name}` for `{reason}`"
-            await ctx.send(f"User `{member}` has been kicked for `{reason}`")
-            await member.send(messageok)
-            await member.kick(reason=reason)
-            print(f"User {member} has been kicked for {reason}")
-        except Exception as error:
-            await ctx.send(error)
-            print(f"{error}")
+@bot.listen(hikari.StartedEvent)
+async def on_started(event):
+    print("Bot has has connected to Discord!")
 
-@client.command()
-@commands.has_permissions(ban_members=True)
-async def ban(ctx, member : discord.Member, reason=None):
-    if reason == None:
-        await ctx.send(f"Woah {ctx.author.mention}, make sure you provide a reason!")
-        print(f"Woah {ctx.author.mention}, make sure you provide a reason!")
-    else:
-        try:
-            messageok = f"You have been banned from `{ctx.guild.name}` for `{reason}`"
-            await ctx.send(f"User `{member}` has been banned for `{reason}`")
-            await member.send(messageok)
-            await member.ban(reason=reason)
-            print(f"User {member} has been banned for {reason}")
-        except Exception as error:
-            await ctx.send(error)
-            print(f"{error}")
+@bot.command
+@lightbulb.command('hello', 'Says hello!')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ping(ctx):
+    await ctx.respond(f'Hello!')
+    helper.log("Hello command sent", USE_COLORS, "green")
 
+@bot.command
+@lightbulb.command('help', 'Sends a list of commands!')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def help(ctx):
+    sorted_commands = sorted(helper.bot_commands)
+    await ctx.respond(f'{sorted_commands}')
+    helper.log("help command sent", USE_COLORS, "green")
+    helper.log(f"{sorted_commands}", USE_COLORS, "white")
 
-@client.event
-async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+@bot.command
+@lightbulb.option('num1', 'First number', type=int)
+@lightbulb.option('num2', 'Second number', type=int)
+@lightbulb.command('add', 'Sums two numbers!')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def calc(ctx):
+    await ctx.respond(f'Result is: {ctx.options.num1 + ctx.options.num2}')
+    helper.log("calc command sent", USE_COLORS, "green")
+    helper.log(f'Result is: {ctx.options.num1 + ctx.options.num2}', USE_COLORS, "white")
+
+@bot.command()
+@lightbulb.add_checks(lightbulb.has_guild_permissions(hikari.Permissions.BAN_MEMBERS))
+@lightbulb.option("reason", "Reason for the ban", required=False)
+@lightbulb.option("user", "The user to ban.", type=hikari.User)
+@lightbulb.command("ban", "Ban a user from the server.")
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ban(ctx: lightbulb.SlashContext) -> None:
+    if not ctx.guild_id:
+        await ctx.respond("This command can only be used in a guild.")
+        return
+
+    await ctx.respond(hikari.ResponseType.DEFERRED_MESSAGE_CREATE)
+    await ctx.app.rest.ban_user(ctx.guild_id, ctx.options.user.id, reason=ctx.options.reason or hikari.UNDEFINED)
+    await ctx.respond(f"Banned {ctx.options.user.mention}.\n**Reason:** {ctx.options.reason or 'No reason provided.'}")
+    helper.log("User has been banned!", USE_COLORS, "green")
+
+@bot.command()
+@lightbulb.add_checks(lightbulb.has_guild_permissions(hikari.Permissions.KICK_MEMBERS))
+@lightbulb.option("reason", "Reason for the kick", required=False)
+@lightbulb.option("user", "The user to kick.", type=hikari.User)
+@lightbulb.command("kick", "Kick a user from the server.")
+@lightbulb.implements(lightbulb.SlashCommand)
+async def kick(ctx: lightbulb.SlashContext) -> None:
+    if not ctx.guild_id:
+        await ctx.respond("This command can only be used in a guild.")
+        return
+
+    await ctx.respond(hikari.ResponseType.DEFERRED_MESSAGE_CREATE)
+    await ctx.app.rest.kick_user(ctx.guild_id, ctx.options.user.id, reason=ctx.options.reason or hikari.UNDEFINED)
+    await ctx.respond(f"Kicked {ctx.options.user.mention}.\n**Reason:** {ctx.options.reason or 'No reason provided.'}")
+    helper.log("User has been kicked!", USE_COLORS, "green")
 
 if __name__ == "__main__":
     try:
-        client.run(TOKEN)
-        on_ready()
-    except KeyboardInterrupt:
-        print("\n\nKeyboardInterrupt > > > Exiting...")
+        bot.run()
+    except:
+        print("Exiting...")
         sys.exit(0)
