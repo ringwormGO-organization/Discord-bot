@@ -12,14 +12,14 @@ bot = None
 
 if USE_REPL == False:
     bot = lightbulb.BotApp(
-        token="TOKEN",
-        default_enabled_guilds=("SERVER_ID")
+        token="ODk5NjExMzcyNjk3MDMwNjg2.GgK7W1.SJ13oTDPJmhAFkvd_UnSb9jlTPpCx2O8BahB6w",
+        default_enabled_guilds=873967277014409287
     )
 
 else:
     bot = lightbulb.BotApp(
         token=os.environ['TOKEN'],
-        default_enabled_guilds=(os.environ['SERVER_ID'])
+        default_enabled_guilds=int(os.environ['SERVER_ID'])
     )
 
 @bot.listen(hikari.StartedEvent)
