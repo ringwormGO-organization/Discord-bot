@@ -12,8 +12,8 @@ bot = None
 
 if USE_REPL == False:
     bot = lightbulb.BotApp(
-        token="TOKEN",
-        default_enabled_guilds="SERVER_ID"
+        token="ODk5NjExMzcyNjk3MDMwNjg2.GBCMjD.0IpzX8c7235HMJ2fyrvFIXB2KPbh1IcYSQqXFU",
+        default_enabled_guilds=873967277014409287
     )
 
 else:
@@ -86,7 +86,14 @@ async def kick(ctx: lightbulb.SlashContext) -> None:
 
 if __name__ == "__main__":
     try:
-        bot.run()
-    except:
+        if USE_REPL == True:
+            from keep_alive import keep_alive
+            keep_alive()
+            bot.run()
+        
+        else:
+            bot.run()
+    except Exception as e:
+        print(f"Exception caught: {e}")
         print("Exiting...")
         sys.exit(0)

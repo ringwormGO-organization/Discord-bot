@@ -12,12 +12,13 @@ NOTE: Bot is currently not 24h active.
 ### Some required stuff
 1. Python3 - *You can check version by typing `python -v`, it needs to return something what starts with 3, otherwise check with `python3 -v`. If you get error about non recognized command, install Python3*
 2. discord
-3. discord.py - *It is required for older bot version without slash commands. You can install it by `pip3 install discord` or `pip install discord`*
-4. hikari - *You can install it by `pip3 install hikari` or `pip install hikari`*
-5. hikari-lightbulb - *You can install it by `pip3 install hikari-lightbulb` or `pip install hikari-lightbulb`*
-6. colorama - *This is required if you want to use colors, change variable `USE_COLORS`. You can install it by `pip3 install hikari-lightbulb` or `pip install hikari-lightbulb`*
-7. TOKEN for your bot
-8. Server ID
+3. hikari - *You can install it by `pip3 install hikari` or `pip install hikari`*
+4. hikari-lightbulb - *You can install it by `pip3 install hikari-lightbulb` or `pip install hikari-lightbulb`*
+5. colorama - *This is required if you want to use colors, change variable `USE_COLORS`. You can install it by `pip3 install hikari-lightbulb` or `pip install hikari-lightbulb`*
+6. flask - *It is required for Repl if you want bot to be active 24/7. You can install it by `pip3 install flask` or `pip install flask`*
+7. discord.py - *It is required for older bot version without slash commands. You can install it by `pip3 install discord` or `pip install discord`*
+8. TOKEN for your bot
+9. Server ID
 
 ### Command to run
 1. Navigate to directory where is `README.md` and `Bot` folder/directory
