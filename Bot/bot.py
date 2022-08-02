@@ -12,8 +12,8 @@ bot = None
 
 if USE_REPL == False:
     bot = lightbulb.BotApp(
-        token="ODk5NjExMzcyNjk3MDMwNjg2.GgK7W1.SJ13oTDPJmhAFkvd_UnSb9jlTPpCx2O8BahB6w",
-        default_enabled_guilds=873967277014409287
+        token="TOKEN",
+        default_enabled_guilds="SERVER_ID"
     )
 
 else:
