@@ -2,14 +2,14 @@
 Discord bot for ringwormGO written in Python
 
 ## Invite bot in own server
-https://discord.com/api/oauth2/authorize?client_id=899611372697030686&permissions=1428882025590&scope=bot%20applications.commands
+https://discord.com/api/oauth2/authorize?client_id=1003706545374253098&permissions=1394522287222&scope=bot
 
 NOTE: Bot is currently not 24h active.
 
 ## How to use?
  - *If you want to use old bot version without slash commands chech release and/or commits history!*
 
-### Some required stuff
+### Dependencies
 1. Python3 - *You can check version by typing `python -v`, it needs to return something what starts with 3, otherwise check with `python3 -v`. If you get error about non recognized command, install Python3*
 2. discord
 3. hikari - *You can install it by `pip3 install hikari` or `pip install hikari`*
@@ -20,7 +20,7 @@ NOTE: Bot is currently not 24h active.
 8. TOKEN for your bot
 9. Server ID
 
-### Command to run
+### Run
 1. Navigate to directory where is `README.md` and `Bot` folder/directory
 2. Enter token - *If you use Repl, enter token in enviroment variables, otherwise in code.* **Be careful, don't share bot's token!**
 3. Enter server id - *If you use Repl, enter token in enviroment variables, otherwise in code.*
