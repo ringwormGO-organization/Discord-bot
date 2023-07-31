@@ -2,7 +2,10 @@ bot_commands = ['add', 'ban', 'hello', 'help', 'kick']
 
 def log(message: str, use_color: bool, color: str):
     if use_color:
-        import colorama
+        try:
+            import colorama
+        except ModuleNotFoundError:
+            print("Colorama module was not found! Please install it by pip: pip install requests...")
         if color == "red":
             print(colorama.Fore.RED + message + colorama.Fore.RESET)
         elif color == "green":
