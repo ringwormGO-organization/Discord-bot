@@ -2,32 +2,35 @@
 Discord bot for ringwormGO written in Python
 
 ## Invite bot in own server
-https://discord.com/api/oauth2/authorize?client_id=1003706545374253098&permissions=1394522287222&scope=bot
+https://discord.com/api/oauth2/authorize?client_id=1003706545374253098&permissions=1426935999702&scope=applications.commands%20bot
 
-NOTE: Bot is currently not 24h active.
-
-## How to use?
- - *If you want to use old bot version without slash commands chech release and/or commits history!*
+## Run bot locally
 
 ### Dependencies
-1. Python3 - *You can check version by typing `python -v`, it needs to return something what starts with 3, otherwise check with `python3 -v`. If you get error about non recognized command, install Python3*
-2. discord
-3. hikari - *You can install it by `pip3 install hikari` or `pip install hikari`*
-4. hikari-lightbulb - *You can install it by `pip3 install hikari-lightbulb` or `pip install hikari-lightbulb`*
-5. colorama - *This is required if you want to use colors, change variable `USE_COLORS`. You can install it by `pip3 install hikari-lightbulb` or `pip install hikari-lightbulb`*
-6. flask - *It is required for Repl if you want bot to be active 24/7. You can install it by `pip3 install flask` or `pip install flask`*
-7. discord.py - *It is required for older bot version without slash commands. You can install it by `pip3 install discord` or `pip install discord`*
-8. TOKEN for your bot
-9. Server ID
+- Python3
+    - Install with ```apt-get install python3``` if not already installed on GNU/Linux machine, Debain based.
+    - Install with ```pacman -S python``` if not already installed on GNU/Linux machine, Arch based.
+- Discord
+    - Install with ```apt-get install discord``` if not already installed on GNU/Linux machine, Debain based.
+    - Install with ```pacman -S discord``` if not already installed on GNU/Linux machine, Arch based.
+    - Or use Discord in web browser (```discord.com```)
+- hikari
+    - Install with ```pip install hikari``` or ```pip3 install hikari```
+- hikari-lightbulb
+    - Install with ```pip install hikari-lightbulb``` or ```pip3 install hikari-lightbulb```
+- colorama
+    - Install with ```pip install colorama``` or ```pip3 install colorama```
 
 ### Run
-1. Navigate to directory where is `README.md` and `Bot` folder/directory
-2. Enter token - *If you use Repl, enter token in enviroment variables, otherwise in code.* **Be careful, don't share bot's token!**
-3. Enter server id - *If you use Repl, enter token in enviroment variables, otherwise in code.*
+- Make `.env` file as following:
+```c
+TOKEN="your bot token goes here"
+SERVER_ID=server_id,
+```
+1. **Do not leak your bot token**
+2. **Put comma after your server ID because value needs to be tuple**
 
-- *If you are using Repl, set `USE_REPL` to `True`. `token` variable is equal to bot token and `default_enabled_guilds` variable equal to server id!*
-
-4. Run this command in terminal: `python3 Bot/bot.py` or `python Bot/bot.py`
+- Run `main.py` file
 
 ## Bot in action (pictures)
 ![Screenshot 2022-01-26 194204](https://user-images.githubusercontent.com/83548580/151232550-749d43f9-b450-4acb-962c-2e3dd7e8ea23.jpg)
